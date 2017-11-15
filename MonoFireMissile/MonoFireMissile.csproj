@@ -52,6 +52,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Projectile.cs" />
     <Compile Include="rotatingSprite.cs" />
+    <Compile Include="Sentry.cs" />
     <Compile Include="Sprite.cs" />
     <Compile Include="utility.cs" />
   </ItemGroup>
@@ -69,8 +70,11 @@
     <Content Include="Content\Audio\success.mp3" />
     <Content Include="Content\Textures\CrossHair.png" />
     <Content Include="Content\Textures\Dragon_strip3.png" />
+    <Content Include="Content\Textures\Explosion.png" />
     <Content Include="Content\Textures\explosion_strip8.png" />
     <Content Include="Content\Textures\fireball_strip4.png" />
+    <Content Include="Content\Textures\Projectile.png" />
+    <Content Include="Content\Textures\Turret.png" />
     <Content Include="Content\Textures\viking_strip3.png" />
     <Content Include="Content\Textures\wizard_strip3.png" />
     <Content Include="Icon.ico" />

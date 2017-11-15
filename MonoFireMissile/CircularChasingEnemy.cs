@@ -11,7 +11,7 @@ namespace AnimatedSprite
 {
     class CircularChasingEnemy: Enemy
     {
-        float chaseRdaius = 200;
+        float chaseRadius = 200;
         bool FullOnChase = false;
 
         public float myVelocity { get { return base.Velocity; } set { base.Velocity = value; } }
@@ -39,7 +39,7 @@ namespace AnimatedSprite
             public bool inChaseZone(PlayerWithWeapon p)
             {
                 float distance = Math.Abs(Vector2.Distance(this.WorldOrigin, p.CentrePos));
-                if (distance <= chaseRdaius)
+                if (distance <= chaseRadius)
                     return true;
                 return false;
             }

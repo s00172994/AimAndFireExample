@@ -9,18 +9,18 @@ using Microsoft.Xna.Framework.Input;
 
 namespace AnimatedSprite
 {
-        class PlayerWithWeapon : Sprite
-        {
-            protected Game myGame;
-            protected float playerVelocity = 6.0f;
+    class PlayerWithWeapon : Sprite
+    {
+        protected Game myGame;
+        protected float playerVelocity = 6.0f;
         private Projectile myProjectile;
         protected CrossHair Site;
 
-            public Vector2 CentrePos
-            {
-                get { return position + new Vector2(spriteWidth/ 2, spriteHeight / 2); }
-                
-            }
+        public Vector2 CentrePos
+        {
+            get { return position + new Vector2(spriteWidth / 2, spriteHeight / 2); }
+
+        }
 
         public Projectile MyProjectile
         {
@@ -35,22 +35,22 @@ namespace AnimatedSprite
             }
         }
 
-        public PlayerWithWeapon(Game g, Texture2D texture, Vector2 userPosition, int framecount) : base(g,texture,userPosition,framecount)
-            {
-                myGame = g;
-                Site = new CrossHair(g, g.Content.Load<Texture2D>(@"Textures\CrossHair"), userPosition, 1);
-                
-            }
+        public PlayerWithWeapon(Game g, Texture2D texture, Vector2 userPosition, int framecount) : base(g, texture, userPosition, framecount)
+        {
+            myGame = g;
+            Site = new CrossHair(g, g.Content.Load<Texture2D>(@"Textures\CrossHair"), userPosition, 1);
 
-            public void loadProjectile(Projectile r)
-            {
-                MyProjectile = r;
-            }
+        }
+
+        public void loadProjectile(Projectile r)
+        {
+            MyProjectile = r;
+        }
 
 
         public override void Update(GameTime gameTime)
         {
-           
+
             Viewport gameScreen = myGame.GraphicsDevice.Viewport;
             if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
@@ -69,7 +69,7 @@ namespace AnimatedSprite
                 this.position += new Vector2(0, 1) * playerVelocity;
             }
             // check for site change
-            
+
             Site.Update(gameTime);
             // Whenever the rocket is still and loaded it follows the player posiion
             if (MyProjectile != null && MyProjectile.ProjectileState == Projectile.PROJECTILE_STATE.STILL)
@@ -78,7 +78,7 @@ namespace AnimatedSprite
             if (MyProjectile != null)
             {
                 // fire the rocket and it looks for the target
-                if(Keyboard.GetState().IsKeyDown(Keys.Space))
+                if (Keyboard.GetState().IsKeyDown(Keys.Space) && MyProjectile.ProjectileState == Projectile.PROJECTILE_STATE.STILL)
                     MyProjectile.fire(Site.position);
             }
 
@@ -86,11 +86,11 @@ namespace AnimatedSprite
             position = Vector2.Clamp(position, Vector2.Zero,
                                             new Vector2(gameScreen.Width - spriteWidth,
                                                         gameScreen.Height - spriteHeight));
-            
+
             // Update the Camera with respect to the players new position
             //Vector2 delta = cam.Pos - this.position;
             //cam.Pos += delta;
-            
+
             if (MyProjectile != null)
                 MyProjectile.Update(gameTime);
             // Update the players site
@@ -98,14 +98,14 @@ namespace AnimatedSprite
             // call Sprite Update to get it to animated 
             base.Update(gameTime);
         }
-            
+
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
             Site.Draw(spriteBatch);
             if (MyProjectile != null && MyProjectile.ProjectileState != Projectile.PROJECTILE_STATE.STILL)
-                    MyProjectile.Draw(spriteBatch);
-            
+                MyProjectile.Draw(spriteBatch);
+
         }
 
     }
