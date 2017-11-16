@@ -74,7 +74,10 @@ namespace AnimatedSprite
 
         public void Face(PlayerWithWeapon p)
         {
-            this.angleOfRotation = TurnToFace(position, p.position, 90, turretSpeed);
+            if (IsInRadius(p))
+            {
+                this.angleOfRotation = TurnToFace(position, p.position, 90, turretSpeed);
+            }
         }
 
         public void Check(PlayerWithWeapon p, GameTime gameTime)
@@ -85,7 +88,9 @@ namespace AnimatedSprite
             if (MyProjectile != null)
             {
                 if (IsInRadius(p) && MyProjectile.ProjectileState == Projectile.PROJECTILE_STATE.STILL)
+                {
                     MyProjectile.fire(p.position);
+                }
             }
 
             if (MyProjectile != null)
