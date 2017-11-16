@@ -13,6 +13,7 @@ namespace AnimatedSprite
     {
         float collisionRadius = 300;
         float turretSpeed = 10;
+        float angleOfRotationPrev;
         private Projectile myProjectile;
         PlayerWithWeapon p;
 
@@ -50,6 +51,7 @@ namespace AnimatedSprite
 
         public override void Update(GameTime gameTime)
         {
+            angleOfRotationPrev = angleOfRotation;
             Face(p);
             Check(p, gameTime);
             base.Update(gameTime);
@@ -76,7 +78,7 @@ namespace AnimatedSprite
         {
             if (IsInRadius(p))
             {
-                this.angleOfRotation = TurnToFace(position, p.position, 90, turretSpeed);
+                this.angleOfRotation = TurnToFace(position, p.position, angleOfRotation, turretSpeed);
             }
         }
 
@@ -87,7 +89,8 @@ namespace AnimatedSprite
 
             if (MyProjectile != null)
             {
-                if (IsInRadius(p) && MyProjectile.ProjectileState == Projectile.PROJECTILE_STATE.STILL)
+                if (IsInRadius(p) && MyProjectile.ProjectileState == Projectile.PROJECTILE_STATE.STILL 
+                    && angleOfRotation != 0 && angleOfRotationPrev == angleOfRotation)
                 {
                     MyProjectile.fire(p.position);
                 }

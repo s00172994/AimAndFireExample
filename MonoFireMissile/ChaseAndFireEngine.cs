@@ -33,8 +33,8 @@ namespace Engines
             Projectile fireball;
 
             p = new PlayerWithWeapon(game, game.Content.Load<Texture2D>(@"Textures/wizard_strip3"), new Vector2(500, 400), 3);
-            fireball = new Projectile(game, game.Content.Load<Texture2D>(@"Textures/fireball_strip4"), 
-                new Sprite(game, game.Content.Load<Texture2D>(@"Textures/explosion_strip8"),p.position,8) ,p.position, 4);
+            fireball = new Projectile(game, game.Content.Load<Texture2D>(@"Textures/fireball_strip4"),
+                new Sprite(game, game.Content.Load<Texture2D>(@"Textures/explosion_strip8"), p.position, 8), p.position, 4);
             p.loadProjectile(fireball);
 
             s = new Sentry(game, game.Content.Load<Texture2D>(@"Textures/Turret"), new Vector2(200, 200), 1, p);
@@ -54,7 +54,6 @@ namespace Engines
                 chasers[i].position = new Vector2(Utility.NextRandom(game.GraphicsDevice.Viewport.Width - chasers[i].spriteWidth),
                         Utility.NextRandom(game.GraphicsDevice.Viewport.Height - chasers[i].spriteHeight));
             }
-
         }
 
 
